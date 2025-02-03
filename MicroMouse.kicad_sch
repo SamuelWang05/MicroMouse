@@ -1,0 +1,18 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "2fab3618-16a7-4ab9-a0cc-9d1a50e94418")
+	(paper "A4")
+	(title_block
+		(title "MicroMouse Schematic")
+		(date "2024-03-11")
+		(company "Samuel Wang")
+	)
+	(lib_symbols)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
