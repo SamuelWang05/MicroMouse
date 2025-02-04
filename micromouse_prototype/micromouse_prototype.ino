@@ -1,20 +1,33 @@
-int IR_Sensor_1 = 13; // D10 on nano
-int IR_Sensor_2 = 12; // D9
-int IR_Sensor_3 = 11; // D8
+int IR_Reciever = 7; // D7 on Arduino
+int motor_ctrl_1 = 8; // D8
+int motor_ctrl_2 = 9; // D9
 
 void setup() {
   Serial.begin(9600);
-  pinMode(IR_Sensor_1, INPUT);
-  pinMode(IR_Sensor_2, INPUT);
-  pinMode(IR_Sensor_3, INPUT);
+  pinMode(IR_Reciever, INPUT);
+  pinMode(motor_ctrl_1, OUTPUT);
+  pinMode(motor_ctrl_2, OUTPUT);
+}
+
+void moveForward() {
+  digitalWrite(motor_ctrl_1, HIGH);
+  digitalWrite(motor_ctrl_2, LOW);
+  Serial.println("I AM INSIDE FORWARD");
+}
+
+void moveBackward() {
+  digitalWrite(motor_ctrl_1, LOW);
+  digitalWrite(motor_ctrl_2, HIGH);
 }
 
 void loop() {
-  int sensorRead_1 = digitalRead(IR_Sensor_1);
-  int sensorRead_2 = digitalRead(IR_Sensor_2);
-  int sensorRead_3 = digitalRead(IR_Sensor_3);
+  int sensorRead = digitalRead(IR_Reciever); // 1 --> No obstacle, 0 --> OBSTACLE!!! MOVE!!!
 
-  Serial.println("Sensor 1 Reading: " + sensorRead_1);
-  Serial.println("Sensor 2 Reading: " + sensorRead_2);
-  Serial.println("Sensor 3 Reading: " + sensorRead_3);
+  Serial.println("Sensor Reading: " + String(sensorRead));
+
+  if(sensorRead == 1) {
+    moveForward();
+  } else {
+    moveBackward();
+  }
 }
